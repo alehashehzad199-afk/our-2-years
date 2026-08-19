@@ -3,87 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our 2 Year Journey ❤️</title>
+    <title>Our 2 Year Anniversary ✨</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: #0f172a;
+            background: #090d16;
             color: #f8fafc;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
+        
+        /* Floating background hearts */
+        .bg-heart {
+            position: fixed;
+            color: rgba(244, 63, 94, 0.2);
+            font-size: 24px;
+            animation: floatUpBg 8s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes floatUpBg {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
         .card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 24px;
-            padding: 30px 20px;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 30px 24px;
             max-width: 480px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
             position: relative;
+            z-index: 10;
         }
-        h1 { color: #f43f5e; font-size: 2rem; margin-bottom: 6px; }
+
+        h1 {
+            background: linear-gradient(135deg, #fb7185, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.2rem;
+            margin-bottom: 6px;
+        }
         .subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; }
-        
-        /* Timer */
+
+        /* Timer Grid */
         .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
         .time-box {
-            background: #0f172a;
-            padding: 10px 4px;
-            border-radius: 12px;
-            border: 1px solid #334155;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 12px 4px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .time-num { font-size: 1.3rem; font-weight: bold; color: #fb7185; }
-        .time-label { font-size: 0.65rem; color: #64748b; text-transform: uppercase; }
+        .time-num { font-size: 1.4rem; font-weight: bold; color: #fb7185; }
+        .time-label { font-size: 0.65rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Memory Cards */
-        .section-title { font-weight: 600; margin: 15px 0 10px; color: #cbd5e1; font-size: 0.95rem; }
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .memory-card {
-            background: #0f172a;
-            border: 1px solid #334155;
-            height: 90px;
-            border-radius: 12px;
+        .section-title { font-weight: 600; margin: 20px 0 12px; color: #e2e8f0; font-size: 0.95rem; }
+
+        /* Story Slider */
+        .story-container {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 110px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-            padding: 5px;
+            align-items: center;
+            margin-bottom: 12px;
         }
-        .memory-card:hover { transform: translateY(-3px); background: #334155; }
-        .memory-icon { font-size: 1.5rem; }
-        .memory-text { font-size: 0.7rem; color: #94a3b8; margin-top: 4px; }
+        .story-title { color: #fb7185; font-weight: bold; font-size: 1rem; margin-bottom: 6px; }
+        .story-desc { color: #cbd5e1; font-size: 0.85rem; line-height: 1.4; }
+        .slider-controls { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .slider-btn {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .slider-btn:hover { background: #475569; }
 
-        /* Love Meter Mini-Game */
+        /* Love Meter */
         .love-meter {
-            background: #0f172a;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            margin-bottom: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 20px 0;
         }
         .bar-container {
             background: #334155;
             height: 16px;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             margin: 10px 0;
         }
@@ -94,51 +125,50 @@
             transition: width 0.3s ease;
         }
 
-        /* Buttons & Letter */
-        button {
-            background: #f43f5e;
+        /* Interactive Envelope Letter */
+        .envelope-btn {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.9rem;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
+            box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.4);
+            transition: transform 0.2s;
         }
-        button:hover { background: #e11d48; }
-        .hidden-msg {
+        .envelope-btn:hover { transform: translateY(-2px); }
+        .hidden-letter {
             display: none;
             margin-top: 15px;
-            padding: 15px;
+            padding: 20px;
             background: #0f172a;
-            border-radius: 12px;
+            border-radius: 16px;
             color: #e2e8f0;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            font-size: 0.9rem;
+            line-height: 1.6;
             border-left: 4px solid #f43f5e;
             text-align: left;
+            animation: fadeIn 0.5s ease;
         }
-        .floating-heart {
-            position: absolute;
-            color: #f43f5e;
-            animation: floatUp 2s linear forwards;
-            pointer-events: none;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-80px) scale(1.4); opacity: 0; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<div class="card" id="mainCard">
-    <h1>2 Years Together ❤️</h1>
-    <p class="subtitle">730 days of laughs, adventures, and love!</p>
+<!-- Floating Heart Background Particles -->
+<div id="bgHearts"></div>
 
-    <!-- Real-time Timer -->
+<div class="card">
+    <h1>2 Years Together 💕</h1>
+    <p class="subtitle">730 Days of love, laughs & unforgettable memories</p>
+
+    <!-- Live Timer -->
     <div class="timer-grid">
         <div class="time-box"><div class="time-num" id="days">730</div><div class="time-label">Days</div></div>
         <div class="time-box"><div class="time-num" id="hours">0</div><div class="time-label">Hours</div></div>
@@ -146,37 +176,33 @@
         <div class="time-box"><div class="time-num" id="secs">0</div><div class="time-label">Secs</div></div>
     </div>
 
-    <!-- Clickable Memories -->
-    <div class="section-title">Tap Our Favorite Memories 📸</div>
-    <div class="memory-grid">
-        <div class="memory-card" onclick="revealMemory('First Date! ☕')">
-            <span class="memory-icon">☕</span>
-            <span class="memory-text" id="m1">Memory 1</span>
-        </div>
-        <div class="memory-card" onclick="revealMemory('Late Night Talks 🌙')">
-            <span class="memory-icon">🌙</span>
-            <span class="memory-text" id="m2">Memory 2</span>
-        </div>
-        <div class="memory-card" onclick="revealMemory('Forever To Go ✨')">
-            <span class="memory-icon">✨</span>
-            <span class="memory-text" id="m3">Memory 3</span>
-        </div>
+    <!-- Timeline Slider -->
+    <div class="section-title">Our Story Book 📖</div>
+    <div class="story-container">
+        <div class="story-title" id="storyTitle">Chapter 1: Day One ☕</div>
+        <div class="story-desc" id="storyDesc">Where it all began. The day my life changed forever.</div>
+    </div>
+    <div class="slider-controls">
+        <button class="slider-btn" onclick="prevStory()">← Previous</button>
+        <span style="font-size: 0.8rem; color: #64748b;" id="storyNum">1 / 3</span>
+        <button class="slider-btn" onclick="nextStory()">Next →</button>
     </div>
 
-    <!-- Love Meter Mini-Game -->
+    <!-- Love Meter & Celebration -->
     <div class="love-meter">
         <div style="font-size: 0.85rem; color: #cbd5e1;">Love Meter Level: <span id="percent">0%</span></div>
         <div class="bar-container">
             <div class="bar-fill" id="bar"></div>
         </div>
-        <button style="font-size: 0.8rem; padding: 6px;" onclick="boostLove()">Tap to Boost Love ❤️</button>
+        <button class="slider-btn" style="width: 100%; background: #f43f5e;" onclick="boostLove()">Tap to Fill Love Level ❤️</button>
     </div>
 
-    <!-- Note Button -->
-    <button onclick="toggleNote()">Read My Secret Letter 💌</button>
-    <div id="note" class="hidden-msg">
-        <h3>Happy 2nd Anniversary! 🥂</h3><br>
-        <p>Thank you for making the last 2 years the happiest of my life. I love you more every single day!</p>
+    <!-- Secret Letter -->
+    <button class="envelope-btn" onclick="openLetter()">Open Anniversary Letter ✉️</button>
+    <div id="letter" class="hidden-letter">
+        <h3 style="color: #fb7185; margin-bottom: 10px;">Happy 2nd Anniversary! 🥂</h3>
+        <p>Thank you for 730 days filled with endless love, happiness, and support.</p><br>
+        <p>You make every single day brighter, and I am so grateful to share this journey with you. Here’s to chapter 3 and many more! ❤️</p>
     </div>
 </div>
 
@@ -194,37 +220,60 @@
         document.getElementById('days').innerText = days;
     }, 1000);
 
-    // Love Meter
+    // Story Carousel Data
+    const stories = [
+        { title: "Chapter 1: Day One ☕", desc: "Where it all began. The spark that started our amazing journey together." },
+        { title: "Chapter 2: Growing Together 🌙", desc: "Late-night conversations, endless laughs, and supporting each other's dreams." },
+        { title: "Chapter 3: Forever To Go ✨", desc: "Two full years complete, and I am still falling for you more every single day." }
+    ];
+    let currentStory = 0;
+
+    function updateStory() {
+        document.getElementById('storyTitle').innerText = stories[currentStory].title;
+        document.getElementById('storyDesc').innerText = stories[currentStory].desc;
+        document.getElementById('storyNum').innerText = `${currentStory + 1} / ${stories.length}`;
+    }
+
+    function nextStory() {
+        currentStory = (currentStory + 1) % stories.length;
+        updateStory();
+    }
+
+    function prevStory() {
+        currentStory = (currentStory - 1 + stories.length) % stories.length;
+        updateStory();
+    }
+
+    // Love Meter + Fireworks Effect
     let loveLevel = 0;
     function boostLove() {
-        if (loveLevel < 100) loveLevel += 20;
-        document.getElementById('bar').style.width = loveLevel + '%';
-        document.getElementById('percent').innerText = loveLevel + '%';
-        spawnHeart();
+        if (loveLevel < 100) {
+            loveLevel += 25;
+            document.getElementById('bar').style.width = loveLevel + '%';
+            document.getElementById('percent').innerText = loveLevel + '%';
+        }
+        if (loveLevel === 100) {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        }
     }
 
-    // Memory Reveal
-    function revealMemory(text) {
-        alert(text);
-        spawnHeart();
+    // Open Letter with Fireworks
+    function openLetter() {
+        const letter = document.getElementById('letter');
+        letter.style.display = letter.style.display === 'block' ? 'none' : 'block';
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
     }
 
-    // Toggle Letter
-    function toggleNote() {
-        const note = document.getElementById('note');
-        note.style.display = note.style.display === 'block' ? 'none' : 'block';
-        spawnHeart();
-    }
-
-    // Spawn Hearts
-    function spawnHeart() {
+    // Background Floating Hearts Script
+    const bgContainer = document.getElementById('bgHearts');
+    for (let i = 0; i < 15; i++) {
         const heart = document.createElement('div');
-        heart.classList.add('floating-heart');
+        heart.classList.add('bg-heart');
         heart.innerText = '❤️';
-        heart.style.left = Math.random() * 80 + 10 + '%';
-        heart.style.bottom = '30px';
-        document.getElementById('mainCard').appendChild(heart);
-        setTimeout(() => heart.remove(), 2000);
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+        bgContainer.appendChild(heart);
     }
 </script>
 
