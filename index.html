@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our 2 Year Anniversary ✨</title>
+    <title>Our 2 Year Journey ❤️</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: #090d16;
+            background: radial-gradient(circle at center, #1e1b4b, #0f172a, #020617);
             color: #f8fafc;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             display: flex;
@@ -19,38 +19,38 @@
             overflow-x: hidden;
             position: relative;
         }
-        
-        /* Floating background hearts */
+
+        /* Ambient Floating Hearts */
         .bg-heart {
             position: fixed;
-            color: rgba(244, 63, 94, 0.2);
+            color: rgba(244, 63, 94, 0.25);
             font-size: 24px;
-            animation: floatUpBg 8s linear infinite;
+            animation: floatUpBg 7s linear infinite;
             z-index: 0;
             pointer-events: none;
         }
         @keyframes floatUpBg {
             0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
             50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+            100% { transform: translateY(-10vh) scale(1.3); opacity: 0; }
         }
 
         .card {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 28px;
             padding: 30px 24px;
             max-width: 480px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(244, 63, 94, 0.15);
             position: relative;
             z-index: 10;
         }
 
         h1 {
-            background: linear-gradient(135deg, #fb7185, #f43f5e);
+            background: linear-gradient(135deg, #fb7185, #f43f5e, #e11d48);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 2.2rem;
@@ -66,7 +66,7 @@
             margin-bottom: 25px;
         }
         .time-box {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.7);
             padding: 12px 4px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -76,22 +76,37 @@
 
         .section-title { font-weight: 600; margin: 20px 0 12px; color: #e2e8f0; font-size: 0.95rem; }
 
+        /* Photo Frame Carousel */
+        .photo-frame {
+            width: 100%;
+            height: 230px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid rgba(244, 63, 94, 0.4);
+            margin-bottom: 12px;
+            background: #0f172a;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .photo-frame img:hover { transform: scale(1.03); }
+
         /* Story Slider */
         .story-container {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.7);
             border-radius: 16px;
-            padding: 18px;
+            padding: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             margin-bottom: 12px;
         }
         .story-title { color: #fb7185; font-weight: bold; font-size: 1rem; margin-bottom: 6px; }
         .story-desc { color: #cbd5e1; font-size: 0.85rem; line-height: 1.4; }
-        .slider-controls { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .slider-controls { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; }
         .slider-btn {
             background: #334155;
             color: white;
@@ -100,12 +115,13 @@
             border-radius: 10px;
             cursor: pointer;
             font-size: 0.8rem;
+            transition: background 0.2s;
         }
         .slider-btn:hover { background: #475569; }
 
         /* Love Meter */
         .love-meter {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.7);
             padding: 16px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -125,7 +141,7 @@
             transition: width 0.3s ease;
         }
 
-        /* Interactive Envelope Letter */
+        /* Letter & Buttons */
         .envelope-btn {
             background: linear-gradient(135deg, #f43f5e, #e11d48);
             color: white;
@@ -136,8 +152,8 @@
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.4);
-            transition: transform 0.2s;
+            box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.5);
+            transition: transform 0.2s, background 0.2s;
         }
         .envelope-btn:hover { transform: translateY(-2px); }
         .hidden-letter {
@@ -161,14 +177,13 @@
 </head>
 <body>
 
-<!-- Floating Heart Background Particles -->
 <div id="bgHearts"></div>
 
 <div class="card">
     <h1>2 Years Together 💕</h1>
-    <p class="subtitle">730 Days of love, laughs & unforgettable memories</p>
+    <p class="subtitle">730 days of laughs, adventures & pure love!</p>
 
-    <!-- Live Timer -->
+    <!-- Real-Time Timer -->
     <div class="timer-grid">
         <div class="time-box"><div class="time-num" id="days">730</div><div class="time-label">Days</div></div>
         <div class="time-box"><div class="time-num" id="hours">0</div><div class="time-label">Hours</div></div>
@@ -176,11 +191,14 @@
         <div class="time-box"><div class="time-num" id="secs">0</div><div class="time-label">Secs</div></div>
     </div>
 
-    <!-- Timeline Slider -->
-    <div class="section-title">Our Story Book 📖</div>
+    <!-- Photo Memory Gallery -->
+    <div class="section-title">Our Favorite Memories 📸</div>
+    <div class="photo-frame">
+        <img id="photo" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600" alt="Memory Photo">
+    </div>
     <div class="story-container">
-        <div class="story-title" id="storyTitle">Chapter 1: Day One ☕</div>
-        <div class="story-desc" id="storyDesc">Where it all began. The day my life changed forever.</div>
+        <div class="story-title" id="storyTitle">Chapter 1: Where It Began ☕</div>
+        <div class="story-desc" id="storyDesc">The very first spark that started our beautiful journey together.</div>
     </div>
     <div class="slider-controls">
         <button class="slider-btn" onclick="prevStory()">← Previous</button>
@@ -188,26 +206,26 @@
         <button class="slider-btn" onclick="nextStory()">Next →</button>
     </div>
 
-    <!-- Love Meter & Celebration -->
+    <!-- Love Meter Mini-Game -->
     <div class="love-meter">
         <div style="font-size: 0.85rem; color: #cbd5e1;">Love Meter Level: <span id="percent">0%</span></div>
         <div class="bar-container">
             <div class="bar-fill" id="bar"></div>
         </div>
-        <button class="slider-btn" style="width: 100%; background: #f43f5e;" onclick="boostLove()">Tap to Fill Love Level ❤️</button>
+        <button class="slider-btn" style="width: 100%; background: #f43f5e;" onclick="boostLove()">Tap to Boost Love Level ❤️</button>
     </div>
 
-    <!-- Secret Letter -->
+    <!-- Secret Love Note -->
     <button class="envelope-btn" onclick="openLetter()">Open Anniversary Letter ✉️</button>
     <div id="letter" class="hidden-letter">
         <h3 style="color: #fb7185; margin-bottom: 10px;">Happy 2nd Anniversary! 🥂</h3>
-        <p>Thank you for 730 days filled with endless love, happiness, and support.</p><br>
-        <p>You make every single day brighter, and I am so grateful to share this journey with you. Here’s to chapter 3 and many more! ❤️</p>
+        <p>Thank you for 201 days filled with warmth, smiles, and endless love.</p><br>
+        <p>You make every single day better just by being in it. Here's to us, our past 2 years, and forever to go! ❤️</p>
     </div>
 </div>
 
 <script>
-    // Live Timer
+    // Real-Time Timer Script
     let seconds = 0, minutes = 0, hours = 0, days = 730;
     setInterval(() => {
         seconds++;
@@ -220,15 +238,28 @@
         document.getElementById('days').innerText = days;
     }, 1000);
 
-    // Story Carousel Data
+    // Timeline Story & Image Carousel Data
     const stories = [
-        { title: "Chapter 1: Day One ☕", desc: "Where it all began. The spark that started our amazing journey together." },
-        { title: "Chapter 2: Growing Together 🌙", desc: "Late-night conversations, endless laughs, and supporting each other's dreams." },
-        { title: "Chapter 3: Forever To Go ✨", desc: "Two full years complete, and I am still falling for you more every single day." }
+        { 
+            img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600",
+            title: "Chapter 1: Where It Began ☕", 
+            desc: "The very first spark that started our beautiful journey together." 
+        },
+        { 
+            img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600",
+            title: "Chapter 2: Growing Together 🌙", 
+            desc: "Late night talks, endless laughs, and supporting each other through everything." 
+        },
+        { 
+            img: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600",
+            title: "Chapter 3: Forever To Go ✨", 
+            desc: "Two full years complete, and I am still falling for you more every day." 
+        }
     ];
     let currentStory = 0;
 
     function updateStory() {
+        document.getElementById('photo').src = stories[currentStory].img;
         document.getElementById('storyTitle').innerText = stories[currentStory].title;
         document.getElementById('storyDesc').innerText = stories[currentStory].desc;
         document.getElementById('storyNum').innerText = `${currentStory + 1} / ${stories.length}`;
@@ -244,7 +275,7 @@
         updateStory();
     }
 
-    // Love Meter + Fireworks Effect
+    // Love Meter with Fireworks Confetti
     let loveLevel = 0;
     function boostLove() {
         if (loveLevel < 100) {
@@ -253,20 +284,20 @@
             document.getElementById('percent').innerText = loveLevel + '%';
         }
         if (loveLevel === 100) {
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
         }
     }
 
-    // Open Letter with Fireworks
+    // Secret Letter Unlock
     function openLetter() {
         const letter = document.getElementById('letter');
         letter.style.display = letter.style.display === 'block' ? 'none' : 'block';
-        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+        confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
     }
 
     // Background Floating Hearts Script
     const bgContainer = document.getElementById('bgHearts');
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 18; i++) {
         const heart = document.createElement('div');
         heart.classList.add('bg-heart');
         heart.innerText = '❤️';
