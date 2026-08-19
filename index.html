@@ -3,131 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 2 Years!</title>
+    <title>2 Years With You ❤️</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
             border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            max-width: 450px;
+            padding: 35px 25px;
+            max-width: 480px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .heart {
-            font-size: 60px;
-            color: #ff4b2b;
-            cursor: pointer;
-            display: inline-block;
-            animation: pulse 1.2s infinite ease-in-out;
-            margin-bottom: 15px;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
         }
         h1 {
+            color: #f43f5e;
             font-size: 2rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
         }
         .subtitle {
-            font-size: 1rem;
-            color: #b3b3b3;
+            color: #94a3b8;
+            font-size: 0.95rem;
             margin-bottom: 25px;
         }
-        .counter-box {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .time-box {
+            background: #0f172a;
+            padding: 12px 5px;
             border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        .time-num {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fb7185;
+        }
+        .time-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: #cbd5e1;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             margin-bottom: 25px;
         }
-        .days {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ff416c;
-        }
-        .label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #aaa;
+        .photo-placeholder {
+            background: #334155;
+            height: 90px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #94a3b8;
         }
         button {
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-            border: none;
+            background: #f43f5e;
             color: white;
+            border: none;
             padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
-        }
-        .secret-message {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            border-radius: 9999px;
             font-size: 0.95rem;
-            line-height: 1.5;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        button:hover { background: #e11d48; }
+        .hidden-msg {
             display: none;
-            color: #e0e0e0;
+            margin-top: 15px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 12px;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid #f43f5e;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="heart">❤️</div>
-        <h1>2 Years Together</h1>
-        <p class="subtitle">Since the day we first met</p>
+<div class="card">
+    <h1>2 Years Together</h1>
+    <p class="subtitle">Every second since we met has been an adventure.</p>
 
-        <div class="counter-box">
-            <div class="days" id="daysCount">730</div>
-            <div class="label">Days of Happiness</div>
-        </div>
-
-        <button onclick="revealNote()">Click for a surprise</button>
-
-        <div class="secret-message" id="note">
-            Two years down, and you’re still my favorite notification, my best friend, and my favorite person to code life with. Happy Anniversary! 💕
-        </div>
+    <!-- Real-time Timer -->
+    <div class="timer-grid">
+        <div class="time-box"><div class="time-num" id="days">730</div><div class="time-label">Days</div></div>
+        <div class="time-box"><div class="time-num" id="hours">0</div><div class="time-label">Hours</div></div>
+        <div class="time-box"><div class="time-num" id="mins">0</div><div class="time-label">Mins</div></div>
+        <div class="time-box"><div class="time-num" id="secs">0</div><div class="time-label">Secs</div></div>
     </div>
 
-    <script>
-        function revealNote() {
-            const note = document.getElementById('note');
-            if (note.style.display === 'block') {
-                note.style.display = 'none';
-            } else {
-                note.style.display = 'block';
-            }
-        }
-    </script>
+    <!-- Photo Slots -->
+    <div class="section-title">Our Favorite Moments</div>
+    <div class="gallery">
+        <div class="photo-placeholder">📸</div>
+        <div class="photo-placeholder">❤️</div>
+        <div class="photo-placeholder">✨</div>
+    </div>
+
+    <!-- Secret Note -->
+    <button onclick="toggleNote()">Click to read my note 💌</button>
+    <div id="note" class="hidden-msg">
+        Happy 2nd Anniversary! Thank you for 730 days of laughs, support, and endless memories. Here's to many more chapters together! 🥂
+    </div>
+</div>
+
+<script>
+    // Live Timer Script
+    let seconds = 0, minutes = 0, hours = 0, days = 730;
+    setInterval(() => {
+        seconds++;
+        if (seconds >= 60) { seconds = 0; minutes++; }
+        if (minutes >= 60) { minutes = 0; hours++; }
+        if (hours >= 24) { hours = 0; days++; }
+        
+        document.getElementById('secs').innerText = seconds;
+        document.getElementById('mins').innerText = minutes;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('days').innerText = days;
+    }, 1000);
+
+    function toggleNote() {
+        const note = document.getElementById('note');
+        note.style.display = note.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
 </body>
 </html>
