@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Years With You ❤️</title>
+    <title>Our 2 Year Journey ❤️</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -15,81 +15,97 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
         .card {
             background: #1e293b;
             border: 1px solid #334155;
             border-radius: 24px;
-            padding: 35px 25px;
+            padding: 30px 20px;
             max-width: 480px;
             width: 100%;
             text-align: center;
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+            position: relative;
         }
-        h1 {
-            color: #f43f5e;
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
+        h1 { color: #f43f5e; font-size: 2rem; margin-bottom: 6px; }
+        .subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; }
+        
+        /* Timer */
         .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
         .time-box {
             background: #0f172a;
-            padding: 12px 5px;
+            padding: 10px 4px;
             border-radius: 12px;
             border: 1px solid #334155;
         }
-        .time-num {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #fb7185;
-        }
-        .time-label {
-            font-size: 0.7rem;
-            color: #64748b;
-            text-transform: uppercase;
-        }
-        .section-title {
-            font-weight: 600;
-            margin: 20px 0 10px;
-            color: #cbd5e1;
-        }
-        .gallery {
+        .time-num { font-size: 1.3rem; font-weight: bold; color: #fb7185; }
+        .time-label { font-size: 0.65rem; color: #64748b; text-transform: uppercase; }
+
+        /* Memory Cards */
+        .section-title { font-weight: 600; margin: 15px 0 10px; color: #cbd5e1; font-size: 0.95rem; }
+        .memory-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        .photo-placeholder {
-            background: #334155;
+        .memory-card {
+            background: #0f172a;
+            border: 1px solid #334155;
             height: 90px;
             border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: #94a3b8;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            padding: 5px;
         }
+        .memory-card:hover { transform: translateY(-3px); background: #334155; }
+        .memory-icon { font-size: 1.5rem; }
+        .memory-text { font-size: 0.7rem; color: #94a3b8; margin-top: 4px; }
+
+        /* Love Meter Mini-Game */
+        .love-meter {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            margin-bottom: 20px;
+        }
+        .bar-container {
+            background: #334155;
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .bar-fill {
+            background: linear-gradient(90deg, #f43f5e, #fb7185);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Buttons & Letter */
         button {
             background: #f43f5e;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 9999px;
-            font-size: 0.95rem;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
             width: 100%;
+            transition: background 0.2s;
         }
         button:hover { background: #e11d48; }
         .hidden-msg {
@@ -99,17 +115,28 @@
             background: #0f172a;
             border-radius: 12px;
             color: #e2e8f0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             border-left: 4px solid #f43f5e;
+            text-align: left;
+        }
+        .floating-heart {
+            position: absolute;
+            color: #f43f5e;
+            animation: floatUp 2s linear forwards;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-80px) scale(1.4); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>2 Years Together</h1>
-    <p class="subtitle">Every second since we met has been an adventure.</p>
+<div class="card" id="mainCard">
+    <h1>2 Years Together ❤️</h1>
+    <p class="subtitle">730 days of laughs, adventures, and love!</p>
 
     <!-- Real-time Timer -->
     <div class="timer-grid">
@@ -119,39 +146,85 @@
         <div class="time-box"><div class="time-num" id="secs">0</div><div class="time-label">Secs</div></div>
     </div>
 
-    <!-- Photo Slots -->
-    <div class="section-title">Our Favorite Moments</div>
-    <div class="gallery">
-        <div class="photo-placeholder">📸</div>
-        <div class="photo-placeholder">❤️</div>
-        <div class="photo-placeholder">✨</div>
+    <!-- Clickable Memories -->
+    <div class="section-title">Tap Our Favorite Memories 📸</div>
+    <div class="memory-grid">
+        <div class="memory-card" onclick="revealMemory('First Date! ☕')">
+            <span class="memory-icon">☕</span>
+            <span class="memory-text" id="m1">Memory 1</span>
+        </div>
+        <div class="memory-card" onclick="revealMemory('Late Night Talks 🌙')">
+            <span class="memory-icon">🌙</span>
+            <span class="memory-text" id="m2">Memory 2</span>
+        </div>
+        <div class="memory-card" onclick="revealMemory('Forever To Go ✨')">
+            <span class="memory-icon">✨</span>
+            <span class="memory-text" id="m3">Memory 3</span>
+        </div>
     </div>
 
-    <!-- Secret Note -->
-    <button onclick="toggleNote()">Click to read my note 💌</button>
+    <!-- Love Meter Mini-Game -->
+    <div class="love-meter">
+        <div style="font-size: 0.85rem; color: #cbd5e1;">Love Meter Level: <span id="percent">0%</span></div>
+        <div class="bar-container">
+            <div class="bar-fill" id="bar"></div>
+        </div>
+        <button style="font-size: 0.8rem; padding: 6px;" onclick="boostLove()">Tap to Boost Love ❤️</button>
+    </div>
+
+    <!-- Note Button -->
+    <button onclick="toggleNote()">Read My Secret Letter 💌</button>
     <div id="note" class="hidden-msg">
-        Happy 2nd Anniversary! Two years from now a stranger jumped into my Dms and eventually in my heart. That random stranger is now the love of life Thank you for 201 days of laughs, support, and endless memories. Here's to many more chapters together! 🥂
+        <h3>Happy 2nd Anniversary! 🥂</h3><br>
+        <p>Thank you for making the last 2 years the happiest of my life. I love you more every single day!</p>
     </div>
 </div>
 
 <script>
-    // Live Timer Script
+    // Live Timer
     let seconds = 0, minutes = 0, hours = 0, days = 730;
     setInterval(() => {
         seconds++;
         if (seconds >= 60) { seconds = 0; minutes++; }
         if (minutes >= 60) { minutes = 0; hours++; }
         if (hours >= 24) { hours = 0; days++; }
-        
         document.getElementById('secs').innerText = seconds;
         document.getElementById('mins').innerText = minutes;
         document.getElementById('hours').innerText = hours;
         document.getElementById('days').innerText = days;
     }, 1000);
 
+    // Love Meter
+    let loveLevel = 0;
+    function boostLove() {
+        if (loveLevel < 100) loveLevel += 20;
+        document.getElementById('bar').style.width = loveLevel + '%';
+        document.getElementById('percent').innerText = loveLevel + '%';
+        spawnHeart();
+    }
+
+    // Memory Reveal
+    function revealMemory(text) {
+        alert(text);
+        spawnHeart();
+    }
+
+    // Toggle Letter
     function toggleNote() {
         const note = document.getElementById('note');
         note.style.display = note.style.display === 'block' ? 'none' : 'block';
+        spawnHeart();
+    }
+
+    // Spawn Hearts
+    function spawnHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * 80 + 10 + '%';
+        heart.style.bottom = '30px';
+        document.getElementById('mainCard').appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
     }
 </script>
 
